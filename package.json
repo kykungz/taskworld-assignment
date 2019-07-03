@@ -5,6 +5,7 @@
   "author": "Kongpon Charanwattanakit <jackykongpon@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "test": "mocha --require @babel/register --require @babel/polyfill --timeout 10000",
     "backend": "NODE_ENV=development nodemon --exec babel-node backend/server.js",
     "frontend": "parcel -p 3000 frontend/index.html",
     "build": "parcel build frontend/index.html -d build --public-url ./"
@@ -30,7 +31,12 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.0.0-0",
     "@babel/node": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.1.4",
     "nodemon": "^1.19.1"
   }
 }

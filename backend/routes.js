@@ -6,7 +6,7 @@ import requireAuth from './middlewares/requireAuth'
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.send('Hello from express')
+  res.send('Hello World')
 })
 
 router.post('/user/register', async (req, res) => {

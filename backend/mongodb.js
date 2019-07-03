@@ -17,6 +17,7 @@ export default {
 
     const mongooseOptions = {
       useNewUrlParser: true,
+      useFindAndModify: false,
     }
 
     await mongoose.connect(
