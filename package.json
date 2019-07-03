@@ -5,9 +5,9 @@
   "author": "Kongpon Charanwattanakit <jackykongpon@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "api": "NODE_ENV=development nodemon --exec babel-node api/server.js",
-    "dev": "parcel -p 3000 public/index.html",
-    "build": "parcel build public/index.html -d build --public-url ./"
+    "backend": "NODE_ENV=development nodemon --exec babel-node backend/server.js",
+    "frontend": "parcel -p 3000 frontend/index.html",
+    "build": "parcel build frontend/index.html -d build --public-url ./"
   },
   "dependencies": {
     "babel-preset-react-app": "^9.0.0",
