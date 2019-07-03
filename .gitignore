@@ -3,6 +3,10 @@
 # Edit at https://www.gitignore.io/?templates=node
 
 ### Node ###
+# Parcel
+dist/
+.cache/
+
 # Logs
 logs
 *.log
