@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:3
+    environment:
+      - MONGO_INITDB_DATABASE=taskworld
+      - MONGO_INITDB_ROOT_USERNAME=jacky
+      - MONGO_INITDB_ROOT_PASSWORD=jacky
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    restart: always
+    container_name: taskworld-mongodb
