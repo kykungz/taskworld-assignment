@@ -5,14 +5,8 @@ import jwt from 'jsonwebtoken'
 class UserService {
   async createNewUser(username, password) {
     const hashed = await bcrypt.hash(password, 8)
-
-    const user = new User({
-      username,
-      password: hashed,
-    })
-
+    const user = new User({ username, password: hashed })
     await user.save()
-
     return user
   }
 
@@ -26,9 +20,7 @@ class UserService {
     if (user) {
       const authorized = await bcrypt.compare(password, user.password)
       if (authorized) {
-        const payload = {
-          username: user.username,
-        }
+        const payload = { username: user.username }
         const claims = {
           expiresIn: '30d',
           issuer: 'taskworld.com',
