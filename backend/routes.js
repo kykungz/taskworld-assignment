@@ -1,6 +1,7 @@
 import express from 'express'
 import createError from 'http-errors'
 import userService from './services/userService'
+import requireAuth from './middlewares/requireAuth'
 
 const router = express.Router()
 
@@ -22,6 +23,13 @@ router.post('/user/login', async (req, res, next) => {
   } catch (error) {
     next(createError(401, error.message))
   }
+})
+
+router.post('/user/preferences/update', requireAuth, async (req, res, next) => {
+  const user = req.user
+  const preferences = req.body
+  await userService.updatePreferences(user._id, preferences)
+  res.send({ success: true })
 })
 
 export default router

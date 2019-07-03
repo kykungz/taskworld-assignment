@@ -10,16 +10,16 @@ const UserSchema = new mongoose.Schema(
       currency: { type: String, required: true, default: 'USD' },
       profileVisibility: { type: String, required: true, default: 'everyone' },
       recieveMessages: { type: String, required: true, default: 'everyone' },
+      recentlyViewed: {
+        type: Array,
+        required: true,
+        default: [],
+      },
       autoAddCategoryList: {
         type: String,
         required: true,
         default: 'disabled',
       },
-    },
-    recentlyViewed: {
-      type: Array,
-      required: true,
-      default: [],
     },
   },
   {

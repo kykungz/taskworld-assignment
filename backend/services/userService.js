@@ -1,6 +1,7 @@
 import User from '../models/User'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import config from '../config'
 
 class UserService {
   async createNewUser(username, password) {
@@ -12,6 +13,11 @@ class UserService {
 
   async getUserByUsername(username) {
     const user = await User.findOne({ username })
+    return user
+  }
+
+  async getUserById(id) {
+    const user = await User.findById(id)
     return user
   }
 
@@ -27,12 +33,24 @@ class UserService {
           audience: 'taskworld.com',
           subject: user._id.toString(),
         }
-        const secret = 'taskworld-secret'
+        const secret = config.JWT_SECRET
         return jwt.sign(payload, secret, claims)
       }
       throw new Error('Incorrect password')
     }
     throw new Error('User not found')
+  }
+
+  async updatePreferences(userId, preferences) {
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { preferences },
+      {
+        new: true,
+        overwrite: true,
+      },
+    )
+    return updatedUser
   }
 }
 
