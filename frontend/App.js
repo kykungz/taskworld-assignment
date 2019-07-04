@@ -6,7 +6,7 @@ import RouterView from './router'
 
 const Container = styled.div`
   width: 100%;
-  max-width: 900px;
+  max-width: 1080px;
   margin: auto;
 `
 
@@ -18,6 +18,11 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+  }
+
+  a {
+    color: #0275d8;
+    text-decoration: none;
   }
 `
 

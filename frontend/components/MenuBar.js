@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import Box from './Box'
+import Separator from './Separator'
 
-const Container = styled.div`
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+const Container = styled(Box)`
   width: 100%;
   max-width: 260px;
   padding: 8px 0;
@@ -14,7 +13,7 @@ const Item = styled.div`
   font-weight: ${props => (props.selected ? 'bold' : 'normal')};
   padding: 0.5em 1em;
   cursor: pointer;
-  color: ${props => (props.selected ? 'black' : '#8a8a8a')};
+  color: ${props => (props.selected ? '#4e4e4e' : '#8a8a8a')};
   background: ${props => (props.selected ? 'rgba(0, 0, 0, 0.05)' : 'inherit')};
 
   &:hover {
@@ -22,10 +21,8 @@ const Item = styled.div`
   }
 `
 
-const Separator = styled.hr`
+const StyledSeparator = styled(Separator)`
   margin: 8px 1em;
-  border: none;
-  border-top: thin solid #eee;
 `
 
 export default () => (
