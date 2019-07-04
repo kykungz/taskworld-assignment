@@ -1,12 +1,18 @@
-
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-const App = () => (
-  <div className="App">
-    <div className="App-Header">
-      Demo ReactJS with Parceljs
-    </div>
-  </div>
-)
+import RouterView from './router'
+
+class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        <>
+          <RouterView />
+        </>
+      </Router>
+    )
+  }
+}
 
 export default App
