@@ -5,10 +5,16 @@ import config from '../config'
 
 class UserService {
   async createNewUser(username, password) {
-    const hashed = await bcrypt.hash(password, 8)
-    const user = new User({ username, password: hashed })
-    await user.save()
-    return user
+    const existingUser = await User.findOne({ username })
+
+    if (!existingUser) {
+      const hashed = await bcrypt.hash(password, 8)
+      const user = new User({ username, password: hashed })
+      await user.save()
+      return user
+    }
+
+    throw new Error('User already exists')
   }
 
   async getUserByUsername(username) {
@@ -17,8 +23,12 @@ class UserService {
   }
 
   async getUserById(id) {
-    const user = await User.findById(id)
-    return user
+    try {
+      const user = await User.findById(id)
+      return user
+    } catch (error) {
+      return null
+    }
   }
 
   async login(username, password) {
