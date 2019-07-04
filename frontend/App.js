@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import RouterView from './router'
+import Navbar from './components/Navbar'
 
 import { observer } from 'mobx-react'
 import store from './store'
@@ -16,6 +17,8 @@ const Container = styled.div`
 const GlobalStyle = createGlobalStyle`
   body {
     background: #eee;
+    margin: 0;
+    padding: 0;
   }
 
   * {
@@ -41,6 +44,7 @@ class App extends React.Component {
     return (
       <Router>
         <GlobalStyle />
+        <Navbar />
         <Container>
           <RouterView />
         </Container>
