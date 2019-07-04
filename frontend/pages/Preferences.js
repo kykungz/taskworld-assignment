@@ -6,6 +6,7 @@ import Separator from '../components/Separator'
 import Section from '../components/Section'
 import Dropdown from '../components/Dropdown'
 import RadioButton from '../components/RadioButton'
+import AccentButton from '../components/AccentButton'
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,6 +54,12 @@ const Option = styled.div`
 const RadioContainer = styled.div`
   display: flex;
   margin-top: 12px;
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `
 
 const languages = [
@@ -216,6 +223,12 @@ export default () => (
             ))}
           </RadioContainer>
         </Option>
+      </Section>
+      <SectionSeparator />
+      <Section>
+        <ButtonContainer>
+          <AccentButton>Save Preferences</AccentButton>
+        </ButtonContainer>
       </Section>
     </Container>
   </Wrapper>
