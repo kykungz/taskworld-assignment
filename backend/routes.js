@@ -9,6 +9,11 @@ router.get('/', (req, res) => {
   res.send('Hello World')
 })
 
+router.get('/addUser', async (req, res) => {
+  const user = await userService.createNewUser('test', 'test')
+  res.send({ success: true })
+})
+
 router.post('/user/register', async (req, res) => {
   const { username, password } = req.body
   const user = await userService.createNewUser(username, password)

@@ -4,6 +4,9 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 import RouterView from './router'
 
+import { observer } from 'mobx-react'
+import store from './store'
+
 const Container = styled.div`
   width: 100%;
   max-width: 1080px;
@@ -26,9 +29,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+@observer
 class App extends React.Component {
-  componentDidMount() {
-    // TODO: Check auth
+  async componentDidMount() {
+    if (window.location.pathname !== '/login') {
+      await store.fetchUser()
+    }
   }
 
   render() {

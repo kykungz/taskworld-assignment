@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser'
 import routes from './routes'
 import mongodb from './mongodb'
 
-const port = process.env.PORT || 5000
+const port = 5000
 const app = express()
 
 mongodb.connect()
