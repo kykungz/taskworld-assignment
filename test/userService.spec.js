@@ -12,12 +12,12 @@ describe('userService', () => {
     await User.deleteMany({})
   })
 
-  describe('createNewUser', () => {
-    const userInfo = {
-      username: 'test',
-      password: 'test',
-    }
+  const userInfo = {
+    username: 'test',
+    password: 'test',
+  }
 
+  describe('createNewUser', () => {
     it('should create new user if not exist', async () => {
       const expected = {
         username: 'test',
@@ -59,11 +59,6 @@ describe('userService', () => {
   })
 
   describe('getUserByUsername', () => {
-    const userInfo = {
-      username: 'test',
-      password: 'test',
-    }
-
     beforeEach(async () => {
       const testUser = new User({
         username: userInfo.username,
@@ -84,11 +79,6 @@ describe('userService', () => {
   })
 
   describe('getUserById', () => {
-    const userInfo = {
-      username: 'test',
-      password: 'test',
-    }
-
     let userId = null
 
     beforeEach(async () => {
