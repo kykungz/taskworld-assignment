@@ -13,7 +13,13 @@ const jwtOptions = {
 const jwtAuth = new JwtStrategy(jwtOptions, async (payload, done) => {
   try {
     const userId = payload.sub
-    const user = await userService.getUserById(userId)
+    const userDoc = await userService.getUserById(userId)
+    const user = {
+      _id: userDoc._id,
+      username: userDoc.username,
+      preferences: userDoc.preferences,
+    }
+
     if (user) {
       return done(null, user)
     } else {

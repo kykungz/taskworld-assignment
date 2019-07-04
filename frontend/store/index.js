@@ -36,6 +36,7 @@ class Store {
       localStorage.setItem('access_token', token)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       await this.fetchUser()
+      window.location.href = '/'
     } catch (error) {
       return alert(error.response.data)
     }

@@ -14,6 +14,10 @@ router.get('/addUser', async (req, res) => {
   res.send({ success: true })
 })
 
+router.get('/user', requireAuth, async (req, res) => {
+  res.send(req.user)
+})
+
 router.post('/user/register', async (req, res) => {
   const { username, password } = req.body
   const user = await userService.createNewUser(username, password)

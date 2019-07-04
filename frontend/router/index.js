@@ -1,17 +1,12 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import Home from '../pages/Home'
 import Preferences from '../pages/Preferences'
 import Login from '../pages/Login'
 
 const routes = [
   {
     path: '/',
-    component: Home,
-  },
-  {
-    path: '/preferences',
     component: Preferences,
   },
   {
