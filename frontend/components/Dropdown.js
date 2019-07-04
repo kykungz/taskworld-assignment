@@ -1,9 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const DropdownContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 0.5em 0;
+`
+
 const Select = styled.select`
   width: 100%;
-  margin: 0.5em 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -15,11 +21,6 @@ const Select = styled.select`
   cursor: pointer;
 `
 
-const DropdownContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-`
 const IconContainer = styled.div`
   position: absolute;
   display: flex;

@@ -3,23 +3,27 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
-  padding: 1.5em 1em;
+  align-items: baseline;
+
+  & + & {
+    margin-left: 40px;
+  }
 `
 
-const Title = styled.div`
-  min-width: 200px;
-  color: #8a8a8a;
+const Input = styled.input`
+  margin-right: 8px;
 `
 
 const Content = styled.div`
-  flex: 1;
+  font-size: 14px;
+  color: #4e4e4e;
 `
 
 export default props => {
-  const { title, children } = props
+  const { children, name, value } = props
   return (
     <Container>
-      <Title>{title}</Title>
+      <Input type="radio" name={name} value={value} />
       <Content>{children}</Content>
     </Container>
   )
