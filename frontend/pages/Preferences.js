@@ -8,6 +8,15 @@ import Dropdown from '../components/Dropdown'
 import RadioButton from '../components/RadioButton'
 import AccentButton from '../components/AccentButton'
 
+import {
+  languages,
+  timeZones,
+  currencies,
+  visibilities,
+  messages,
+  autoCatagoryOptions,
+} from '../data'
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -61,65 +70,6 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 `
-
-const languages = [
-  {
-    name: 'Thai',
-    value: 'th',
-  },
-  {
-    name: 'English',
-    value: 'en',
-  },
-  {
-    name: 'German',
-    value: 'de',
-  },
-]
-
-const timeZones = [
-  {
-    name: '(UTC+00:00) UTC',
-    value: '+00:00',
-  },
-  {
-    name: '(UTC+01:00) UTC',
-    value: '+01:00',
-  },
-  {
-    name: '(UTC+02:00) UTC',
-    value: '+02:00',
-  },
-  {
-    name: '(UTC+03:00) UTC',
-    value: '+03:00',
-  },
-]
-
-const currencies = [
-  {
-    name: 'U.S. dollars ($)',
-    value: 'USD',
-  },
-  {
-    name: 'Thai Baht',
-    value: 'THB',
-  },
-]
-
-const visibilities = [
-  { name: 'Everyone', value: 'everyone' },
-  { name: 'Private', value: 'private' },
-]
-const messages = [
-  { name: 'Everyone', value: 'everyone' },
-  { name: 'People you follow', value: 'following' },
-  { name: 'No one', value: 'none' },
-]
-const autoCatagoryOptions = [
-  { name: 'Enable', value: 'enabled' },
-  { name: 'Disable', value: 'disabled' },
-]
 
 export default () => (
   <Wrapper>

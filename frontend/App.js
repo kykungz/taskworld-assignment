@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
 `
 
 class App extends React.Component {
+  componentDidMount() {
+    // TODO: Check auth
+  }
+
   render() {
     return (
       <Router>
