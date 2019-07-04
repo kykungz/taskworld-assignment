@@ -1,38 +1,18 @@
 import chai from 'chai'
-import chaiHttp from 'chai-http'
 import User from '../backend/models/User'
 import userService from '../backend/services/userService'
 
-import server from '../backend/server'
-
-let should = chai.should()
 let expect = chai.expect
 
-chai.use(chaiHttp)
-
-describe('Users', () => {
+describe('userService', () => {
   beforeEach(done => {
-    //Before each test we empty the database
     User.deleteMany({}, err => {
       done()
     })
   })
 
-  describe('GET /', () => {
-    it('should recieve "Hello World"', done => {
-      chai
-        .request(server)
-        .get('/')
-        .end((err, res) => {
-          expect(res).to.have.status(200)
-          expect(res.text).to.equal('Hello World')
-          done()
-        })
-    })
-  })
-
-  describe('POST /user/register', () => {
-    it('should create new user', done => {
+  describe('createNewUser', () => {
+    it('should create new user', async () => {
       const expected = {
         username: 'test',
         preferences: {
@@ -51,16 +31,20 @@ describe('Users', () => {
         password: 'test',
       }
 
-      chai
-        .request(server)
-        .post('/user/register')
-        .send(registerInfo)
-        .end(async (err, res) => {
-          const user = await User.findOne({ username: registerInfo.username })
-          expect(res).to.have.status(200)
-          expect(user.toObject()).to.deep.include(expected)
-          done()
-        })
+      const existingUser = await User.findOne({
+        username: registerInfo.username,
+      })
+
+      expect(existingUser).to.not.exist
+
+      await userService.createNewUser(
+        registerInfo.username,
+        registerInfo.password,
+      )
+
+      const addedUser = await User.findOne({ username: registerInfo.username })
+
+      expect(addedUser.toObject()).to.deep.include(expected)
     })
   })
 })
