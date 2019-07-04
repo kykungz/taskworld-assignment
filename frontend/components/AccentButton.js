@@ -11,6 +11,8 @@ const Button = styled.button`
   cursor: pointer;
   transition: all 300ms;
 
+  ${props => props.block && 'width: 100%;'}
+
   &:hover {
     background: #1387eb;
   }
@@ -24,7 +26,11 @@ const Button = styled.button`
 `
 
 export default props => {
-  const { children, ...restProps } = props
+  const { children, block, ...restProps } = props
 
-  return <Button {...restProps}>{children}</Button>
+  return (
+    <Button block={block} {...restProps}>
+      {children}
+    </Button>
+  )
 }

@@ -7,6 +7,7 @@ import Section from '../components/Section'
 import Dropdown from '../components/Dropdown'
 import RadioButton from '../components/RadioButton'
 import AccentButton from '../components/AccentButton'
+import Label from '../components/Label'
 
 import { observer } from 'mobx-react'
 import store from '../store'
@@ -43,13 +44,6 @@ const TitleContainer = styled.div`
 
 const SectionSeparator = styled(Separator)`
   margin: 0;
-`
-
-const Label = styled.div`
-  font-weight: bold;
-  font-size: 15px;
-  color: #4e4e4e;
-  margin-bottom: 0.5em;
 `
 
 const Hint = styled.div`
