@@ -10,6 +10,8 @@ const Container = styled(Box)`
 `
 
 const Item = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: ${props => (props.selected ? 'bold' : 'normal')};
   padding: 0.5em 1em;
   cursor: pointer;
@@ -19,6 +21,11 @@ const Item = styled.div`
   &:hover {
     background: rgba(0, 0, 0, 0.05);
   }
+
+  i {
+    font-size: 22px;
+    margin-right: 6px;
+  }
 `
 
 const StyledSeparator = styled(Separator)`
@@ -27,16 +34,43 @@ const StyledSeparator = styled(Separator)`
 
 export default () => (
   <Container>
-    <Item>Edit Profile</Item>
-    <Item selected>Preferences</Item>
-    <Item>Password</Item>
-    <Item>Notifications</Item>
-    <Item>Connected Accounts</Item>
+    <Item>
+      <i className="material-icons">account_circle</i>
+      Edit Profile
+    </Item>
+    <Item selected>
+      <i className="material-icons">settings_applications</i>
+      Preferences
+    </Item>
+    <Item>
+      <i className="material-icons">lock</i>
+      Password
+    </Item>
+    <Item>
+      <i className="material-icons">notification_important</i>
+      Notifications
+    </Item>
+    <Item>
+      <i className="material-icons">drag_indicator</i>
+      Connected Accounts
+    </Item>
     <Separator />
-    <Item>Orders</Item>
-    <Item>Payment</Item>
-    <Item>Shipping</Item>
+    <Item>
+      <i className="material-icons">list</i>
+      Orders
+    </Item>
+    <Item>
+      <i className="material-icons">credit_card</i>
+      Payment
+    </Item>
+    <Item>
+      <i className="material-icons">local_shipping</i>
+      Shipping
+    </Item>
     <Separator />
-    <Item>Credits & Referrals</Item>
+    <Item>
+      <i className="material-icons">settings_applications</i>
+      Credits & Referrals
+    </Item>
   </Container>
 )

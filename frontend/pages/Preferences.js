@@ -78,7 +78,6 @@ export default observer(() => {
 
   const handleSetPreference = name => e => {
     const value = e.target.value
-    console.log(name, e.target.value)
     setPreferences({
       ...preferences,
       [name]: value,

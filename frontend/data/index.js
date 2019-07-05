@@ -1,3 +1,17 @@
+import React from 'react'
+
+const withIcon = (icon, text) => (
+  <span style={{ display: 'flex' }}>
+    <i
+      style={{ fontSize: '14px', marginRight: '4px' }}
+      className="material-icons"
+    >
+      {icon}
+    </i>
+    {text}
+  </span>
+)
+
 export const languages = [
   {
     name: 'Thai',
@@ -57,12 +71,16 @@ export const currencies = [
 
 export const visibilities = [
   { name: 'Everyone', value: 'everyone' },
-  { name: 'Private', value: 'private' },
+  {
+    name: withIcon('lock', 'Private'),
+    value: 'private',
+  },
 ]
+
 export const messages = [
   { name: 'Everyone', value: 'everyone' },
   { name: 'People you follow', value: 'following' },
-  { name: 'No one', value: 'none' },
+  { name: withIcon('lock', 'No one'), value: 'none' },
 ]
 export const autoCategoryOptions = [
   { name: 'Enable', value: 'enabled' },
