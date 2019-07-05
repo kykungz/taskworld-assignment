@@ -4,12 +4,12 @@ import jwt from 'jsonwebtoken'
 import config from '../config'
 
 class UserService {
-  async createNewUser({ username, password, email }) {
+  async createNewUser(username, password) {
     const existingUser = await User.findOne({ username })
 
     if (!existingUser) {
       const hashed = await bcrypt.hash(password, 8)
-      const user = new User({ username, email, password: hashed })
+      const user = new User({ username, password: hashed })
       await user.save()
       return user
     }

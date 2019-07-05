@@ -36,7 +36,6 @@ export default observer(props => {
 
   const [form, setForm] = useState({
     username: '',
-    email: '',
     password: '',
     confirmPassword: '',
   })
@@ -51,11 +50,7 @@ export default observer(props => {
   const handleRegister = async e => {
     e.preventDefault()
     if (form.password === form.confirmPassword) {
-      await store.register({
-        username: form.username,
-        email: form.email,
-        password: form.password,
-      })
+      await store.register(form.username, form.password)
     } else {
       alert('Password mismatched')
     }
@@ -71,15 +66,6 @@ export default observer(props => {
             value={form.username}
             onChange={handleFormChange('username')}
             autoComplete="username"
-          />
-        </div>
-
-        <div>
-          <Label>Email</Label>
-          <Input
-            value={form.email}
-            onChange={handleFormChange('email')}
-            autoComplete="email"
           />
         </div>
 
