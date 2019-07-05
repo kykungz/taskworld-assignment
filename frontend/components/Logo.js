@@ -6,6 +6,7 @@ const Container = styled.div`
   font-size: 32px;
   font-weight: bold;
   color: #4e4e4e;
+  margin: auto;
 `
 
 export default () => {

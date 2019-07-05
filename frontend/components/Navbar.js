@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import Input from './Input'
 import Badge from './Badge'
 import Logo from './Logo'
+import { observer } from 'mobx-react'
+import store from '../store'
 
 const Wrapper = styled.div`
   background: white;
@@ -48,25 +50,31 @@ const Center = styled.div`
   margin: auto;
 `
 
-export default () => {
+export default observer(() => {
+  const loggedIn = !!store.user
+
   return (
     <Wrapper>
       <Container>
-        <SearchBox placeholder="Search Fancy" />
+        {loggedIn && <SearchBox placeholder="Search Fancy" />}
+
         <Logo />
-        <MenuContainer>
-          <Badge text="1">
-            <i className="material-icons">shopping_cart</i>
-          </Badge>
-          <i className="material-icons">inbox</i>
-          <i className="material-icons">flash_on</i>
-          <ProfileContainer>
-            <i className="material-icons">person</i>
-            <div>You</div>
-            <i className="material-icons">arrow_drop_down</i>
-          </ProfileContainer>
-        </MenuContainer>
+
+        {loggedIn && (
+          <MenuContainer>
+            <Badge text="1">
+              <i className="material-icons">shopping_cart</i>
+            </Badge>
+            <i className="material-icons">inbox</i>
+            <i className="material-icons">flash_on</i>
+            <ProfileContainer>
+              <i className="material-icons">person</i>
+              <div>You</div>
+              <i className="material-icons">arrow_drop_down</i>
+            </ProfileContainer>
+          </MenuContainer>
+        )}
       </Container>
     </Wrapper>
   )
-}
+})

@@ -14,7 +14,7 @@ class Store {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       try {
         const res = await axios.get(`${API_URL}/user`)
-        this.user = res.data.user
+        this.user = res.data
       } catch (error) {
         window.location.href = '/login'
       }
@@ -35,7 +35,6 @@ class Store {
       const token = res.data.token
       localStorage.setItem('access_token', token)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      await this.fetchUser()
       window.location.href = '/'
     } catch (error) {
       return alert(error.response.data)

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Box from '../components/Box'
 import Input from '../components/Input'
 import Label from '../components/Label'
+import Logo from '../components/Logo'
 import AccentButton from '../components/AccentButton'
 import { observer } from 'mobx-react'
 import store from '../store'
@@ -12,12 +13,20 @@ const Container = styled(Box)`
   padding: 1em;
   max-width: 400px;
   margin: auto;
+  text-align: center;
 `
 
 const Form = styled.form`
+  text-align: left;
   > div + div {
     margin-top: 1em;
   }
+`
+
+const Title = styled(Label)`
+  font-size: 20px;
+  margin-bottom: 1.5em;
+  text-align: center;
 `
 
 export default observer(props => {
@@ -39,8 +48,7 @@ export default observer(props => {
 
   return (
     <Container>
-      <h2>Fancy - Login</h2>
-
+      <Title>Login</Title>
       <Form onSubmit={handleLogin}>
         <div>
           <Label>Username</Label>

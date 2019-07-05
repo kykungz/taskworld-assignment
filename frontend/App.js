@@ -41,6 +41,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('re-render')
     return (
       <Router>
         <GlobalStyle />
