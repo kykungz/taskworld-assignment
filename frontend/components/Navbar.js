@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Input from './Input'
+import Badge from './Badge'
+import Logo from './Logo'
 
 const Wrapper = styled.div`
   background: white;
@@ -11,6 +13,7 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   max-width: 1200px;
   margin: auto;
@@ -38,13 +41,23 @@ const MenuContainer = styled(ProfileContainer)`
   }
 `
 
+const Center = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+`
+
 export default () => {
   return (
     <Wrapper>
       <Container>
         <SearchBox placeholder="Search Fancy" />
+        <Logo />
         <MenuContainer>
-          <i className="material-icons">shopping_cart</i>
+          <Badge text="1">
+            <i className="material-icons">shopping_cart</i>
+          </Badge>
           <i className="material-icons">inbox</i>
           <i className="material-icons">flash_on</i>
           <ProfileContainer>
