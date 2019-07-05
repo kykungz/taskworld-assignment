@@ -20,7 +20,7 @@ after(() => {
   User.deleteMany({}, err => {})
 })
 
-describe('Users', () => {
+describe('routes', () => {
   const userInfo = {
     username: 'test',
     password: 'test',
