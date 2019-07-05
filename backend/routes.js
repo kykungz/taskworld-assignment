@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/addUser', async (req, res) => {
-  const user = await userService.createNewUser('test', 'test')
+  const user = await userService.createNewUser({
+    username: 'test',
+    password: 'test',
+    email: 'test@gmail.com',
+  })
   res.send({ success: true })
 })
 
@@ -19,8 +23,8 @@ router.get('/user', requireAuth, async (req, res) => {
 })
 
 router.post('/user/register', async (req, res) => {
-  const { username, password } = req.body
-  const user = await userService.createNewUser(username, password)
+  const { username, password, email } = req.body
+  const user = await userService.createNewUser({ username, password, email })
   res.send(user)
 })
 
@@ -37,7 +41,10 @@ router.post('/user/login', async (req, res, next) => {
 router.post('/user/preferences/update', requireAuth, async (req, res, next) => {
   const user = req.user
   const preferences = req.body
-  const updatedPreferences = await userService.updatePreferences(user._id, preferences)
+  const updatedPreferences = await userService.updatePreferences(
+    user._id,
+    preferences,
+  )
   res.send(updatedPreferences)
 })
 

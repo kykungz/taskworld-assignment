@@ -10,7 +10,10 @@ class Store {
   updatePreferences = async preferences => {
     const { API_URL } = config
     try {
-      const res = await axios.post(`${API_URL}/user/preferences/update`, preferences)
+      const res = await axios.post(
+        `${API_URL}/user/preferences/update`,
+        preferences,
+      )
       this.user.preferences = res.data
     } catch (error) {
       window.location.href = '/login'
@@ -31,6 +34,21 @@ class Store {
       }
     } else {
       window.location.href = '/login'
+    }
+  }
+
+  @action
+  register = async ({ username, password, email }) => {
+    const { API_URL } = config
+    try {
+      const res = await axios.post(`${API_URL}/user/register`, {
+        username,
+        password,
+        email,
+      })
+      window.location.href = '/login'
+    } catch (error) {
+      return alert(error.response.data)
     }
   }
 

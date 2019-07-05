@@ -23,7 +23,7 @@ describe('userService', () => {
         username: 'test',
         preferences: {
           language: 'en',
-          timeZone: '+7:00',
+          timeZone: '+07:00',
           currency: 'USD',
           profileVisibility: 'everyone',
           recieveMessages: 'everyone',
@@ -60,11 +60,7 @@ describe('userService', () => {
 
   describe('getUserByUsername', () => {
     beforeEach(async () => {
-      const testUser = new User({
-        username: userInfo.username,
-        password: userInfo.password,
-      })
-      await testUser.save()
+      await new User(userInfo).save()
     })
 
     it('should return correct user with input username', async () => {
@@ -96,6 +92,33 @@ describe('userService', () => {
     it('should return null when user does not exist', async () => {
       const user = await userService.getUserById('user does not exist')
       expect(user).to.be.null
+    })
+  })
+
+  describe('updatePreferences', () => {
+    let userId = null
+    const preferences = {
+      autoAddCategoryList: 'enabled',
+      currency: 'THB',
+      language: 'en',
+      profileVisibility: 'private',
+      recentlyViewed: [],
+      recieveMessages: 'everyone',
+      timeZone: '+02:00',
+    }
+
+    beforeEach(async () => {
+      const user = new User(userInfo)
+      await user.save()
+      userId = user._id
+    })
+
+    it('should return updated preferences', async () => {
+      const updatedPreferences = await userService.updatePreferences(
+        userId,
+        preferences,
+      )
+      expect(updatedPreferences.toObject()).to.eql(preferences)
     })
   })
 })

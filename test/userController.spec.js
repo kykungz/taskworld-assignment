@@ -12,7 +12,6 @@ chai.use(chaiHttp)
 
 describe('Users', () => {
   beforeEach(done => {
-    //Before each test we empty the database
     User.deleteMany({}, err => {
       done()
     })
@@ -37,7 +36,7 @@ describe('Users', () => {
         username: 'test',
         preferences: {
           language: 'en',
-          timeZone: '+7:00',
+          timeZone: '+07:00',
           currency: 'USD',
           profileVisibility: 'everyone',
           recieveMessages: 'everyone',

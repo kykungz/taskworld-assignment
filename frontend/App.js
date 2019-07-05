@@ -35,7 +35,11 @@ const GlobalStyle = createGlobalStyle`
 @observer
 class App extends React.Component {
   async componentDidMount() {
-    if (window.location.pathname !== '/login') {
+    const ignoreUser = ['/login', '/register'].includes(
+      window.location.pathname,
+    )
+
+    if (!ignoreUser) {
       await store.fetchUser()
     }
   }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import Preferences from '../pages/Preferences'
+import Register from '../pages/Register'
 import Login from '../pages/Login'
 
 const routes = [
@@ -12,6 +13,10 @@ const routes = [
   {
     path: '/login',
     component: Login,
+  },
+  {
+    path: '/register',
+    component: Register,
   },
 ]
 
