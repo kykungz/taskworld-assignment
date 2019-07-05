@@ -5,7 +5,6 @@ import userService from '../backend/services/userService'
 
 import server from '../backend/server'
 
-let should = chai.should()
 let expect = chai.expect
 
 chai.use(chaiHttp)
