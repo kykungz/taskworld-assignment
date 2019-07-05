@@ -7,6 +7,17 @@ class Store {
   user = null
 
   @action
+  updatePreferences = async preferences => {
+    const { API_URL } = config
+    try {
+      const res = await axios.post(`${API_URL}/user/preferences/update`, preferences)
+      this.user.preferences = res.data
+    } catch (error) {
+      window.location.href = '/login'
+    }
+  }
+
+  @action
   fetchUser = async () => {
     const token = localStorage.getItem('access_token')
     if (token) {

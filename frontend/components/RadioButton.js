@@ -20,10 +20,10 @@ const Content = styled.div`
 `
 
 export default props => {
-  const { children, name, value } = props
+  const { children, ...restProps } = props
   return (
     <Container>
-      <Input type="radio" name={name} value={value} />
+      <Input {...restProps} type="radio" />
       <Content>{children}</Content>
     </Container>
   )

@@ -27,8 +27,20 @@ export const timeZones = [
     value: '+02:00',
   },
   {
-    name: '(UTC+03:00) UTC',
-    value: '+03:00',
+    name: '(UTC+04:00) UTC',
+    value: '+04:00',
+  },
+  {
+    name: '(UTC+05:00) UTC',
+    value: '+05:00',
+  },
+  {
+    name: '(UTC+06:00) UTC',
+    value: '+06:00',
+  },
+  {
+    name: '(UTC+07:00) UTC',
+    value: '+07:00',
   },
 ]
 
@@ -52,7 +64,7 @@ export const messages = [
   { name: 'People you follow', value: 'following' },
   { name: 'No one', value: 'none' },
 ]
-export const autoCatagoryOptions = [
+export const autoCategoryOptions = [
   { name: 'Enable', value: 'enabled' },
   { name: 'Disable', value: 'disabled' },
 ]

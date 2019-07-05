@@ -37,8 +37,8 @@ router.post('/user/login', async (req, res, next) => {
 router.post('/user/preferences/update', requireAuth, async (req, res, next) => {
   const user = req.user
   const preferences = req.body
-  await userService.updatePreferences(user._id, preferences)
-  res.send({ success: true })
+  const updatedPreferences = await userService.updatePreferences(user._id, preferences)
+  res.send(updatedPreferences)
 })
 
 export default router

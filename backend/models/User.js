@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true },
     preferences: {
       language: { type: String, required: true, default: 'en' },
-      timeZone: { type: String, required: true, default: '+7:00' },
+      timeZone: { type: String, required: true, default: '+07:00' },
       currency: { type: String, required: true, default: 'USD' },
       profileVisibility: { type: String, required: true, default: 'everyone' },
       recieveMessages: { type: String, required: true, default: 'everyone' },

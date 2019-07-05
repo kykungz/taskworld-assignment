@@ -60,7 +60,7 @@ class UserService {
         overwrite: true,
       },
     )
-    return updatedUser
+    return updatedUser.preferences
   }
 }
 

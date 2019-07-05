@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import MenuBar from '../components/MenuBar'
 import Box from '../components/Box'
@@ -10,7 +10,9 @@ import AccentButton from '../components/AccentButton'
 import Label from '../components/Label'
 
 import { observer } from 'mobx-react'
+import { toJS } from 'mobx'
 import store from '../store'
+import equal from 'fast-deep-equal'
 
 import {
   languages,
@@ -18,7 +20,7 @@ import {
   currencies,
   visibilities,
   messages,
-  autoCatagoryOptions,
+  autoCategoryOptions,
 } from '../data'
 
 const Wrapper = styled.div`
@@ -69,6 +71,32 @@ const ButtonContainer = styled.div`
 `
 
 export default observer(() => {
+  const { user } = store
+  const [preferences, setPreferences] = useState(null)
+  const originalPref = toJS(user && user.preferences)
+  const hasChange = !!(preferences && !equal(originalPref, preferences))
+
+  const handleSetPreference = name => e => {
+    const value = e.target.value
+    console.log(name, e.target.value)
+    setPreferences({
+      ...preferences,
+      [name]: value,
+    })
+  }
+
+  const handleSubmit = async () => {
+    await store.updatePreferences(preferences)
+  }
+
+  useEffect(() => {
+    if (user) {
+      setPreferences(toJS(user.preferences))
+    }
+  }, [user])
+
+  if (!preferences) return null
+
   return (
     <Wrapper>
       <MenuBar />
@@ -80,7 +108,10 @@ export default observer(() => {
         <Section title="Localization">
           <Option>
             <Label>Language</Label>
-            <Dropdown>
+            <Dropdown
+              value={preferences['language']}
+              onChange={handleSetPreference('language')}
+            >
               {languages.map(language => (
                 <option key={language.value} value={language.value}>
                   {language.name}
@@ -94,7 +125,10 @@ export default observer(() => {
           </Option>
           <Option>
             <Label>Time zone</Label>
-            <Dropdown>
+            <Dropdown
+              value={preferences['timeZone']}
+              onChange={handleSetPreference('timeZone')}
+            >
               {timeZones.map(timeZone => (
                 <option key={timeZone.value} value={timeZone.value}>
                   {timeZone.name}
@@ -104,7 +138,10 @@ export default observer(() => {
           </Option>
           <Option>
             <Label>Currency</Label>
-            <Dropdown>
+            <Dropdown
+              value={preferences['currency']}
+              onChange={handleSetPreference('currency')}
+            >
               {currencies.map(currency => (
                 <option key={currency.value} value={currency.value}>
                   {currency.name}
@@ -127,6 +164,10 @@ export default observer(() => {
                   name="visibility"
                   key={visibility.value}
                   value={visibility.value}
+                  checked={
+                    preferences['profileVisibility'] === visibility.value
+                  }
+                  onChange={handleSetPreference('profileVisibility')}
                 >
                   {visibility.name}
                 </RadioButton>
@@ -142,6 +183,8 @@ export default observer(() => {
                   name="message"
                   key={message.value}
                   value={message.value}
+                  checked={preferences['recieveMessages'] === message.value}
+                  onChange={handleSetPreference('recieveMessages')}
                 >
                   {message.name}
                 </RadioButton>
@@ -157,16 +200,21 @@ export default observer(() => {
         <SectionSeparator />
         <Section title="Content">
           <Option>
-            <Label>Catagory lists</Label>
+            <Label>Category lists</Label>
             <Hint>Automatically add Fancy's items to the Category list.</Hint>
             <RadioContainer>
-              {autoCatagoryOptions.map(autoCatagoryOption => (
+              {autoCategoryOptions.map(autoCategoryOption => (
                 <RadioButton
-                  name="autoCatagoryOption"
-                  key={autoCatagoryOption.value}
-                  value={autoCatagoryOption.value}
+                  name="autoCategoryOption"
+                  key={autoCategoryOption.value}
+                  value={autoCategoryOption.value}
+                  checked={
+                    preferences['autoAddCategoryList'] ===
+                    autoCategoryOption.value
+                  }
+                  onChange={handleSetPreference('autoAddCategoryList')}
                 >
-                  {autoCatagoryOption.name}
+                  {autoCategoryOption.name}
                 </RadioButton>
               ))}
             </RadioContainer>
@@ -175,7 +223,9 @@ export default observer(() => {
         <SectionSeparator />
         <Section>
           <ButtonContainer>
-            <AccentButton>Save Preferences</AccentButton>
+            <AccentButton onClick={handleSubmit} disabled={!hasChange}>
+              Save Preferences
+            </AccentButton>
           </ButtonContainer>
         </Section>
       </Container>

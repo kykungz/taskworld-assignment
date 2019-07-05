@@ -36,10 +36,10 @@ const IconContainer = styled.div`
 `
 
 export default props => {
-  const { children } = props
+  const { children, ...restProps } = props
   return (
     <DropdownContainer>
-      <Select>{children}</Select>
+      <Select {...restProps}>{children}</Select>
       <IconContainer>
         <i className="material-icons">unfold_more</i>
       </IconContainer>
