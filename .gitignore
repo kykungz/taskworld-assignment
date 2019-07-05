@@ -4,7 +4,7 @@
 
 ### Node ###
 # database
-docker/db/
+database/
 
 # Parcel
 dist/
