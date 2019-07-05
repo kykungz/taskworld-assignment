@@ -38,13 +38,12 @@ class Store {
   }
 
   @action
-  register = async ({ username, password, email }) => {
+  register = async (username, password) => {
     const { API_URL } = config
     try {
       const res = await axios.post(`${API_URL}/user/register`, {
         username,
         password,
-        email,
       })
       window.location.href = '/login'
     } catch (error) {

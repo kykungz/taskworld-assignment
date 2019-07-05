@@ -30,10 +30,6 @@ const Title = styled(Label)`
 `
 
 export default observer(props => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -50,6 +46,7 @@ export default observer(props => {
   const handleRegister = async e => {
     e.preventDefault()
     if (form.password === form.confirmPassword) {
+      console.log(form)
       await store.register(form.username, form.password)
     } else {
       alert('Password mismatched')

@@ -18,10 +18,14 @@ router.get('/user', requireAuth, async (req, res) => {
   res.send(req.user)
 })
 
-router.post('/user/register', async (req, res) => {
+router.post('/user/register', async (req, res, next) => {
   const { username, password } = req.body
-  const user = await userService.createNewUser(username, password)
-  res.send(user)
+  try {
+    const user = await userService.createNewUser(username, password)
+    res.send(user)
+  } catch (error) {
+    next(createError(401, error.message))
+  }
 })
 
 router.post('/user/login', async (req, res, next) => {
