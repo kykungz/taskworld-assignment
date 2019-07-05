@@ -1,7 +1,7 @@
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import User from '../backend/models/User'
-import userService from '../backend/services/userService'
+import User from '../../backend/models/User'
+import userService from '../../backend/services/userService'
 
 chai.use(chaiAsPromised)
 

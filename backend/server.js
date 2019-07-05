@@ -8,6 +8,7 @@ import mongodb from './mongodb'
 
 const port = 5000
 const app = express()
+const testing = process.env.NODE_ENV === 'test'
 
 mongodb.connect()
 
@@ -19,7 +20,9 @@ app.use(cookieParser())
 app.use('/', routes)
 
 app.use((err, req, res, next) => {
-  console.error(err.message)
+  if (!testing) {
+    console.error(err.message)
+  }
   res.status(err.status || 500).send(err.message)
 })
 

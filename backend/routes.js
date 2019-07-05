@@ -9,22 +9,13 @@ router.get('/', (req, res) => {
   res.send('Hello World')
 })
 
-router.get('/addUser', async (req, res) => {
-  const user = await userService.createNewUser('test', 'test')
-  res.send({ success: true })
-})
-
-router.get('/user', requireAuth, async (req, res) => {
-  res.send(req.user)
-})
-
 router.post('/user/register', async (req, res, next) => {
   const { username, password } = req.body
   try {
     const user = await userService.createNewUser(username, password)
     res.send(user)
   } catch (error) {
-    next(createError(401, error.message))
+    next(createError(400, error.message))
   }
 })
 
@@ -36,6 +27,10 @@ router.post('/user/login', async (req, res, next) => {
   } catch (error) {
     next(createError(401, error.message))
   }
+})
+
+router.get('/user', requireAuth, async (req, res) => {
+  res.send(req.user)
 })
 
 router.post('/user/preferences/update', requireAuth, async (req, res, next) => {

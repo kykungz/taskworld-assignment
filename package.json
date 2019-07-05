@@ -5,7 +5,7 @@
   "author": "Kongpon Charanwattanakit <jackykongpon@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "mocha --require @babel/register --require @babel/polyfill --timeout 10000",
+    "test": "NODE_ENV=test mocha --recursive --require @babel/register --require @babel/polyfill --timeout 10000",
     "backend": "NODE_ENV=development babel-node backend/server.js",
     "frontend": "parcel -p 3000 frontend/index.html",
     "build": "parcel build frontend/index.html -d build --public-url ./"

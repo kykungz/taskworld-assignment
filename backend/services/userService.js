@@ -52,15 +52,10 @@ class UserService {
   }
 
   async updatePreferences(userId, preferences) {
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { preferences },
-      {
-        new: true,
-        overwrite: true,
-      },
-    )
-    return updatedUser.preferences
+    const user = await User.findById(userId)
+    user.preferences = preferences
+    await user.save()
+    return user.preferences
   }
 }
 
