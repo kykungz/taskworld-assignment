@@ -6,6 +6,7 @@ import Input from '../components/Input'
 import Label from '../components/Label'
 import Logo from '../components/Logo'
 import AccentButton from '../components/AccentButton'
+import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import store from '../store'
 
@@ -73,6 +74,10 @@ export default observer(props => {
           <AccentButton block type="submit">
             Login
           </AccentButton>
+        </div>
+
+        <div style={{ textAlign: 'right' }}>
+          Not a member? <Link to="/register">Register now</Link>
         </div>
       </Form>
     </Container>
