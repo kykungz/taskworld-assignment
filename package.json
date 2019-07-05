@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha --require @babel/register --require @babel/polyfill --timeout 10000",
-    "backend": "NODE_ENV=development nodemon --exec babel-node backend/server.js",
+    "backend": "NODE_ENV=development babel-node backend/server.js",
     "frontend": "parcel -p 3000 frontend/index.html",
     "build": "parcel build frontend/index.html -d build --public-url ./"
   },

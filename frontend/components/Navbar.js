@@ -28,13 +28,29 @@ const SearchBox = styled(Input)`
   max-width: 200px;
 `
 
-const ProfileContainer = styled.div`
+const ItemContainer = styled.div`
   display: flex;
   color: #8e8e8e;
   align-items: flex-end;
+  cursor: pointer;
+  position: relative;
 `
 
-const MenuContainer = styled(ProfileContainer)`
+const ProfileContainer = styled(ItemContainer)`
+  &:hover {
+    &::after {
+      content: 'Logout';
+      position: absolute;
+      right: 0;
+      bottom: -150%;
+      background: black;
+      color: white;
+      padding: 4px;
+    }
+  }
+`
+
+const MenuContainer = styled(ItemContainer)`
   i {
     font-size: 22px;
   }
@@ -67,7 +83,7 @@ export default observer(() => {
             </Badge>
             <i className="material-icons">inbox</i>
             <i className="material-icons">flash_on</i>
-            <ProfileContainer>
+            <ProfileContainer onClick={store.logout}>
               <i className="material-icons">person</i>
               <div>You</div>
               <i className="material-icons">arrow_drop_down</i>

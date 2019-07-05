@@ -72,7 +72,7 @@ class Store {
   @action
   logout = async () => {
     localStorage.removeItem('access_token')
-    window.reload()
+    window.location.reload()
   }
 }
 
